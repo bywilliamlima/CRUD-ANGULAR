@@ -11,6 +11,11 @@
     <mat-cell *matCellDef="let clientes" mask="(99) 9999-9999"> {{ clientes.phone }} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="dataCadastro">
+    <mat-header-cell *matHeaderCellDef>Data de Cadastro</mat-header-cell>
+    <mat-cell *matCellDef="let clientes"> {{ clientes.dataCadastro | date: 'dd/MM/yyyy' }} </mat-cell>
+  </ng-container>
+
   <!-- cnpj Column -->
   <ng-container matColumnDef="cnpj">
     <mat-header-cell *matHeaderCellDef>CNPJ</mat-header-cell>

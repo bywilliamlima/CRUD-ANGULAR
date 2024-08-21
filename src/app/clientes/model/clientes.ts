@@ -4,5 +4,6 @@ export interface Clientes {
   category: string;
   cnpj:string;
   phone:string;
+  dataCadastro: Date;
 
 }
