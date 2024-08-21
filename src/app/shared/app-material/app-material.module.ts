@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {  NgxMaskModule } from 'ngx-mask';
+
 
 
 
@@ -27,6 +29,7 @@ exports:[MatCardModule,
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
+  NgxMaskModule
 
 ],
 
