@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    <span>CADASTRO DE CLIENTES</span>
+  </mat-toolbar>
+
+  <mat-card-content>
+    <form [formGroup]="form" class="min-width">
+      <mat-form-field class="fromulario">
+        <input
+          matInput
+          placeholder="Nome ou Razão Social"
+          formControlName="name"
+        />
+
+      </mat-form-field>
+
+      <mat-form-field class="fromulario">
+        <input
+          matInput
+          placeholder="Telefone"
+          formControlName="phone"
+        />
+
+      </mat-form-field>
+
+      <mat-form-field class="fromulario">
+        <input
+          matInput
+          placeholder="CNPJ"
+          formControlName="cnpj"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label> Categoria</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="null"></mat-option>
+          <mat-option value="Pessoa Fisica">Pessoa Fisica</mat-option>
+          <mat-option value="Pessoa Juridica">Pessoa Juridica</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Salvar
+    </button>
+    <button mat-button>Cancelar</button>
+  </mat-card-actions>
+</mat-card>
