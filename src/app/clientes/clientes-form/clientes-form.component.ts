@@ -22,7 +22,8 @@ export class ClientesFormComponent implements OnInit {
     name: [''],
     category: [''],
     cnpj: [''],
-    phone: ['']
+    phone: [''],
+    ie:[''],
   });
 
   constructor(private formBuilder:NonNullableFormBuilder,
@@ -42,8 +43,8 @@ export class ClientesFormComponent implements OnInit {
       name: clientes.name ,
       category: clientes.category,
       cnpj: clientes.cnpj,
-      phone: clientes.phone
-
+      phone: clientes.phone,
+      ie:clientes.ie
     });
 
   }

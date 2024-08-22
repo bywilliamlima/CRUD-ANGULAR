@@ -18,8 +18,14 @@
 
   <!-- cnpj Column -->
   <ng-container matColumnDef="cnpj">
-    <mat-header-cell *matHeaderCellDef>CNPJ</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>CNPJ / CPF</mat-header-cell>
     <mat-cell *matCellDef="let clientes"> {{ clientes.cnpj }} </mat-cell>
+  </ng-container>
+
+  <!-- cnpj Column -->
+  <ng-container matColumnDef="ie">
+    <mat-header-cell *matHeaderCellDef>IE / RG</mat-header-cell>
+    <mat-cell *matCellDef="let clientes"> {{ clientes.ie }} </mat-cell>
   </ng-container>
 
   <!-- category Column -->
