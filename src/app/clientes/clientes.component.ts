@@ -6,6 +6,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
 import { Clientes } from './model/clientes';
 import { ClientesService } from './services/clientes.service';
+import { ComfimationDialogComponent } from '../shared/components/error-dialog/comfimation-dialog/comfimation-dialog.component';
 
 
 
@@ -67,20 +68,33 @@ export class ClientesComponent implements OnInit {
   }
 
   onRemove(clientes: Clientes) {
-    this.clientesService.remove(clientes._id).subscribe({
-      next: () => {
-        this.refresh();
-        this.snackBar.open('Registro excluído', 'X', {
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
+
+    const dialogRef = this.dialog.open(ComfimationDialogComponent,{
+      data: 'Tem certeza que deseja remover',
+      });
+
+      dialogRef.afterClosed().subscribe((result: boolean) => {
+        if (result){this.clientesService.remove(clientes._id).subscribe({
+          next: () => {
+            this.refresh();
+            this.snackBar.open('Registro excluído', 'X', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          },
+          error: (err) => {
+            this.onError('Erro ao excluir registro');
+            console.error('Erro:', err);
+          }
         });
-      },
-      error: (err) => {
-        this.onError('Erro ao excluir registro');
-        console.error('Erro:', err);
-      }
-    });
+
+        }
+
+      });
+
+
+
 
  }
 }
