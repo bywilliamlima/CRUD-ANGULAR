@@ -27,9 +27,14 @@
 
       <mat-form-field class="fromulario">
         <input
+        [value]="formattedValue"
+        (input)="updateMask($event)"
+        
+        maxlength="18"
           matInput
           placeholder="CNPJ / CPF"
           formControlName="cnpj"
+
         />
 
       </mat-form-field>

@@ -10,6 +10,8 @@ import { Clientes } from '../model/clientes';
 
 
 
+
+
 @Component({
   selector: 'app-clientes-form',
   templateUrl: './clientes-form.component.html',
@@ -33,6 +35,8 @@ export class ClientesFormComponent implements OnInit {
     private route:ActivatedRoute,
   ) {
 
+
+
   }
 
 
@@ -48,6 +52,9 @@ export class ClientesFormComponent implements OnInit {
     });
 
   }
+
+
+
 
   onSubmit(){
 
@@ -70,7 +77,21 @@ private onErro(){
     this.location.back();
 
   }
+
+  formattedValue: string = '';
+
+  updateMask(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length > 11) {
+      // Aplica a máscara de CNPJ
+      value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+    } else {
+      // Aplica a máscara de CPF
+      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+    }
+
+    this.formattedValue = value; // Atualiza o valor formatado
+  }
 }
-
-
-
