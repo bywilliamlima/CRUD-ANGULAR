@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ClientesService } from '../services/clientes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Clientes } from '../model/clientes';
-
-
-
-
-
-
 
 @Component({
   selector: 'app-clientes-form',
@@ -20,78 +14,77 @@ import { Clientes } from '../model/clientes';
 export class ClientesFormComponent implements OnInit {
 
   form = this.formBuilder.group({
-    _id:[''],
+    _id: [''],
     name: [''],
     category: [''],
     cnpj: [''],
     phone: [''],
-    ie:[''],
+    ie: [''],
   });
 
-  constructor(private formBuilder:NonNullableFormBuilder,
-    private service:ClientesService,
+
+
+  constructor(
+    private formBuilder: NonNullableFormBuilder,
+    private service: ClientesService,
     private snackBar: MatSnackBar,
-    private location:Location,
-    private route:ActivatedRoute,
-  ) {
-
-
-
-  }
-
+    private location: Location,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     const clientes: Clientes = this.route.snapshot.data['clientes'];
     this.form.setValue({
-      _id:clientes._id,
-      name: clientes.name ,
+      _id: clientes._id,
+      name: clientes.name,
       category: clientes.category,
       cnpj: clientes.cnpj,
       phone: clientes.phone,
-      ie:clientes.ie
+      ie: clientes.ie
     });
+
 
   }
 
-
-
-
-  onSubmit(){
-
+  onSubmit() {
     this.service.save(this.form.value)
-      .subscribe({next: result => this.onSucess(),error: err => {this.onErro();
-      }
-    });
-}
-
-private onSucess(){
-  this.snackBar.open('Cliente registrado !!', '', { duration: 5000 });
-  this.onCancel();
-}
-
-private onErro(){
-  this.snackBar.open('Erro ao salvar cliente.', '', { duration: 5000 });
-}
-
-  onCancel(){
-    this.location.back();
-
+      .subscribe({
+        next: result => this.onSucess(),
+        error: err => this.onErro()
+      });
   }
 
-  formattedValue: string = '';
+  private onSucess() {
+    this.snackBar.open('Cliente registrado!!', '', { duration: 5000 });
+    this.onCancel();
+  }
+
+  private onErro() {
+    this.snackBar.open('Erro ao salvar cliente.', '', { duration: 5000 });
+  }
+
+  onCancel() {
+    this.location.back();
+  }
+
+
+  mask: string = '00.000.000/0000-00';
+  maxLength: number = 18;
+
 
   updateMask(event: Event) {
-    const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let inputValue = (event.target as HTMLInputElement).value;
 
-    if (value.length > 11) {
-      // Aplica a máscara de CNPJ
-      value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
-    } else {
-      // Aplica a máscara de CPF
-      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+
+    if (inputValue.length  < 16) {
+      this.mask = '000.000.000-00';
+      this.maxLength = 20;
+
     }
+     else {
+      this.mask = '00.000.000/0000-00';
+      this.maxLength = 20;
 
-    this.formattedValue = value; // Atualiza o valor formatado
   }
+}
 }
