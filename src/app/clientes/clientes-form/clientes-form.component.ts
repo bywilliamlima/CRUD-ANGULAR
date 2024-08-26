@@ -68,23 +68,7 @@ export class ClientesFormComponent implements OnInit {
   }
 
 
-  mask: string = '00.000.000/0000-00';
-  maxLength: number = 18;
 
 
-  updateMask(event: Event) {
-    let inputValue = (event.target as HTMLInputElement).value;
 
-
-    if (inputValue.length  < 16) {
-      this.mask = '000.000.000-00';
-      this.maxLength = 20;
-
-    }
-     else {
-      this.mask = '00.000.000/0000-00';
-      this.maxLength = 20;
-
-  }
-}
 }
