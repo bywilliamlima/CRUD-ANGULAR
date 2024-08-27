@@ -8,7 +8,7 @@
       <mat-form-field class="fromulario">
         <input
           matInput
-          placeholder="Nome ou Razão Social"
+          placeholder="DIGITE SEU NOME OU RAZÃO SOCIAL"
           formControlName="name"
         />
 
@@ -19,7 +19,7 @@
         mask="(00) 0 0000-0000"
         [dropSpecialCharacters]="false"
           matInput
-          placeholder="Telefone"
+          placeholder="TELEFONE"
           formControlName="phone"
         />
 
@@ -29,7 +29,7 @@
         <input
         matInput
 
-        placeholder="CNPJ / CPF"
+        placeholder="DIGITE SEU CPF OU CNPJ"
         formControlName="cnpj"
 
         mask="000.000.000-00||00.000.000/0000-00"
@@ -41,8 +41,9 @@
       <mat-form-field class="fromulario">
         <input
           matInput
-          placeholder="IE / RG"
+          placeholder="DIGITE SEU RG OU IE"
           formControlName="ie"
+          mask="00.000.000||00.000.000/0000-00"
         />
       </mat-form-field>
 
