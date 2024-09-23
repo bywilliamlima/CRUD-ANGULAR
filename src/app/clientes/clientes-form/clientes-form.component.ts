@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ClientesService } from '../services/clientes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,11 +15,11 @@ export class ClientesFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     _id: [''],
-    name: [''],
-    category: [''],
-    cnpj: [''],
-    phone: [''],
-    ie: [''],
+    name: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
+    category: ['',Validators.required],
+    cnpj: ['',Validators.required],
+    phone: ['',Validators.required],
+    ie: ['',Validators.required],
   });
 
 
@@ -67,8 +67,28 @@ export class ClientesFormComponent implements OnInit {
     this.location.back();
   }
 
+  getErrorMessage(fieldName: string){
+    const field = this.form.get(fieldName);
+
+    if (field?.hasError('required')){
+      return 'Campo obrigatorio';
+    }
+
+    if (field?.hasError('minlength')){
+      const requiredLength = field.errors ? field.errors['minlength']['requiredLength'] : 8;
+
+      return `Tamanho minimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')){
+      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
+
+      return `Tamanho máximo excedido de ${requiredLength}`;
+    }
 
 
+    return 'Campo invalido';
 
+  }
 
 }
