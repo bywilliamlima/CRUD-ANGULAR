@@ -20,6 +20,7 @@ export class ClientesFormComponent implements OnInit {
     cnpj: ['',Validators.required],
     phone: ['',Validators.required],
     ie: ['',Validators.required],
+    status: [''],
   });
 
 
@@ -40,7 +41,8 @@ export class ClientesFormComponent implements OnInit {
       category: clientes.category,
       cnpj: clientes.cnpj,
       phone: clientes.phone,
-      ie: clientes.ie
+      ie: clientes.ie,
+      status: clientes.status,
     });
 
 

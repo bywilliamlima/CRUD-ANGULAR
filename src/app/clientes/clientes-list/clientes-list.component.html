@@ -22,11 +22,19 @@
     <mat-cell *matCellDef="let clientes"> {{ clientes.cnpj }} </mat-cell>
   </ng-container>
 
-  <!-- cnpj Column -->
+  <!-- IE Column -->
   <ng-container matColumnDef="ie">
     <mat-header-cell *matHeaderCellDef>IE / RG</mat-header-cell>
     <mat-cell *matCellDef="let clientes"> {{ clientes.ie }} </mat-cell>
   </ng-container>
+
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
+    <mat-cell *matCellDef="let clientes"> {{ clientes.status }} </mat-cell>
+  </ng-container>
+
+
 
   <!-- category Column -->
   <ng-container matColumnDef="category">
